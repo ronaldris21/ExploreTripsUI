@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExploreTrips.Pages.BookingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomXAML="clr-namespace:ExploreTrips.CustomXAML"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    Title="{Binding Place.Name}"
+    mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Reservar" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+            <ffimage:CachedImage
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                sharedTransitions:Transition.Name="DestinationPlaceIMG"
+                Aspect="AspectFill"
+                BitmapOptimizations="True"
+                CacheDuration="10"
+                HorizontalOptions="Fill"
+                Source="{Binding Place.Img}"
+                VerticalOptions="Fill" />
+
+
+            <pancake:PancakeView
+                Grid.Row="1"
+                HasShadow="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <StackLayout Margin="25" BackgroundColor="Transparent">
+                    <Button
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HeightRequest="60"
+                        HorizontalOptions="Fill"
+                        Text="MÁS  INFORMACIÓN"
+                        VerticalOptions="CenterAndExpand" />
+                    <CustomXAML:RatingBarGrid
+                        BackgroundColor="Transparent"
+                        BindingContext="{Binding Place.Ranking, Mode=TwoWay}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        IsEnabled="False" />
+                </StackLayout>
+            </pancake:PancakeView>
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExploreTrips.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomXaml="clr-namespace:ExploreTrips.CustomXAML"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+        <!--  Place new controls here  -->
+        <ffimage:CachedImage
+            sharedTransitions:Transition.Name="MainImage"
+            Aspect="AspectFill"
+            BitmapOptimizations="True"
+            CacheDuration="10"
+            CacheType="All"
+            HorizontalOptions="Fill"
+            Source="LandscapePageMedium.jpg"
+            VerticalOptions="Fill" />
+        <StackLayout Margin="20">
+            <CustomXaml:RatingBarGrid HeightRequest="40" HorizontalOptions="End">
+                <CustomXaml:RatingBarGrid.BindingContext>
+                    <x:Double>5</x:Double>
+                </CustomXaml:RatingBarGrid.BindingContext>
+            </CustomXaml:RatingBarGrid>
+        </StackLayout>
+        <Button
+            Clicked="Button_Clicked"
+            FontAttributes="Italic,Bold"
+            HorizontalOptions="Center"
+            Text="Explora la belleza del mundo"
+            TranslationY="-50"
+            VerticalOptions="End" />
+
+    </Grid>
+
+</ContentPage>

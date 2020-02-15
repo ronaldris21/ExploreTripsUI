@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid
+    x:Class="ExploreTrips.CustomXAML.RatingBarGrid"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:SVG="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="0"
+    Padding="0"
+    BindingContextChanged="Grid_BindingContextChanged"
+    mc:Ignorable="d">
+
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type SVG:SvgCachedImage}">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Visual" Value="Material" />
+                <Setter Property="Source" Value="estrellaEmpty.svg" />
+                <Setter Property="BitmapOptimizations" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <SVG:SvgCachedImage Grid.Column="0" ClassId="1">
+        <SVG:SvgCachedImage.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </SVG:SvgCachedImage.GestureRecognizers>
+    </SVG:SvgCachedImage>
+    <SVG:SvgCachedImage Grid.Column="1" ClassId="2">
+        <SVG:SvgCachedImage.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </SVG:SvgCachedImage.GestureRecognizers>
+    </SVG:SvgCachedImage>
+    <SVG:SvgCachedImage Grid.Column="2" ClassId="3">
+        <SVG:SvgCachedImage.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </SVG:SvgCachedImage.GestureRecognizers>
+    </SVG:SvgCachedImage>
+    <SVG:SvgCachedImage Grid.Column="3" ClassId="4">
+        <SVG:SvgCachedImage.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </SVG:SvgCachedImage.GestureRecognizers>
+    </SVG:SvgCachedImage>
+    <SVG:SvgCachedImage Grid.Column="4" ClassId="5">
+        <SVG:SvgCachedImage.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </SVG:SvgCachedImage.GestureRecognizers>
+    </SVG:SvgCachedImage>
+
+</Grid>
