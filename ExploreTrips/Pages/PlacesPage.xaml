@@ -10,6 +10,7 @@
     xmlns:models="clr-namespace:ExploreTrips.Models"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    xmlns:trigger="clr-namespace:ExploreTrips.Triggers"
     sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Flip"
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
@@ -57,10 +58,12 @@
             <CollectionView
                 Grid.Row="1"
                 Grid.RowSpan="3"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsUpdatingScrollMode="KeepLastItemInView"
                 SelectionMode="None">
                 <CollectionView.ItemsSource>
                     <x:Array Type="{x:Type models:DestinationPlace}">
-
+                        <!--#region Destinations Original-->
                         <models:DestinationPlace
                             Name="Santorini - Grecia"
                             Category="Explore"
@@ -90,6 +93,72 @@
                             Img="Paris500.jpg"
                             Price="19"
                             Ranking="4.6" />
+
+                        <!--#endregion-->
+                        <!--#region Destinations Copy-->
+                        <models:DestinationPlace
+                            Name="Santorini - Grecia"
+                            Category="Explore"
+                            Id="2"
+                            Img="Santorinih500.jpg"
+                            Price="25.99"
+                            Ranking="5" />
+                        <models:DestinationPlace
+                            Name="Italia - Venecia"
+                            Category="Explore"
+                            Id="1"
+                            Img="italiah500.jpg"
+                            Price="12.99"
+                            Ranking="4" />
+
+                        <models:DestinationPlace
+                            Name="Playa Beach"
+                            Category="Relax and Confort"
+                            Id="3"
+                            Img="SeaTravel500.jpg"
+                            Price="15"
+                            Ranking="5" />
+                        <models:DestinationPlace
+                            Name="Torre Eifel"
+                            Category="Relax and Confort"
+                            Id="4"
+                            Img="Paris500.jpg"
+                            Price="19"
+                            Ranking="4.6" />
+
+                        <!--#endregion-->
+                        <!--#region Destinations Copy-->
+                        <models:DestinationPlace
+                            Name="Santorini - Grecia"
+                            Category="Explore"
+                            Id="2"
+                            Img="Santorinih500.jpg"
+                            Price="25.99"
+                            Ranking="5" />
+                        <models:DestinationPlace
+                            Name="Italia - Venecia"
+                            Category="Explore"
+                            Id="1"
+                            Img="italiah500.jpg"
+                            Price="12.99"
+                            Ranking="4" />
+
+                        <models:DestinationPlace
+                            Name="Playa Beach"
+                            Category="Relax and Confort"
+                            Id="3"
+                            Img="SeaTravel500.jpg"
+                            Price="15"
+                            Ranking="5" />
+                        <models:DestinationPlace
+                            Name="Torre Eifel"
+                            Category="Relax and Confort"
+                            Id="4"
+                            Img="Paris500.jpg"
+                            Price="19"
+                            Ranking="4.6" />
+
+                        <!--#endregion-->
                     </x:Array>
                 </CollectionView.ItemsSource>
                 <CollectionView.ItemsLayout>
@@ -105,18 +174,21 @@
                                 </Grid.RowDefinitions>
 
 
-                                <Image
+                                <ffimage:CachedImage
                                     Grid.Row="0"
                                     sharedTransitions:Transition.Group="{Binding Id}"
                                     sharedTransitions:Transition.Name="DestinationPlaceIMG"
                                     Aspect="AspectFill"
+                                    FadeAnimationDuration="500"
+                                    FadeAnimationEnabled="True"
+                                    FadeAnimationForCachedImages="True"
                                     HeightRequest="200"
                                     Source="{Binding Img}"
                                     WidthRequest="200">
-                                    <Image.GestureRecognizers>
+                                    <ffimage:CachedImage.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding CommandObjectTapped}" />
-                                    </Image.GestureRecognizers>
-                                </Image>
+                                    </ffimage:CachedImage.GestureRecognizers>
+                                </ffimage:CachedImage>
                                 <StackLayout
                                     Grid.Row="1"
                                     Spacing="0"
@@ -138,16 +210,15 @@
                                         BindingContext="{Binding Ranking}"
                                         HeightRequest="60"
                                         HorizontalOptions="Center"
+                                        IsEnabled="False"
                                         WidthRequest="100" />
                                     <Button
                                         Margin="20,0,0,10"
                                         Command="{Binding CommandObjectTapped}"
                                         FontAttributes="Bold"
-                                        Text="Leer Más"
+                                        Text="Saber Más"
                                         VerticalOptions="EndAndExpand" />
                                 </StackLayout>
-
-
                             </Grid>
                         </ContentView>
                     </DataTemplate>

@@ -8,12 +8,14 @@
     xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    xmlns:trigger="clr-namespace:ExploreTrips.Triggers"
     sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300"
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
 
     <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
         <!--  Place new controls here  -->
+
         <ffimage:CachedImage
             sharedTransitions:Transition.Name="MainImage"
             Aspect="AspectFill"
@@ -23,12 +25,53 @@
             HorizontalOptions="Fill"
             Source="LandscapePageMedium.jpg"
             VerticalOptions="Fill" />
+
+        <Label
+            Text="Made by Ronald Ris"
+            TextColor="White"
+            TranslationX="10"
+            TranslationY="10" />
+
         <StackLayout Margin="20">
             <CustomXaml:RatingBarGrid HeightRequest="40" HorizontalOptions="End">
                 <CustomXaml:RatingBarGrid.BindingContext>
                     <x:Double>5</x:Double>
                 </CustomXaml:RatingBarGrid.BindingContext>
             </CustomXaml:RatingBarGrid>
+
+            <StackLayout HorizontalOptions="Start">
+
+                <Button Text="Left" WidthRequest="100">
+                    <Button.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <trigger:BtnTranslateLeftTrigger />
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Text="Right" WidthRequest="100">
+                    <Button.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <trigger:BtnTranslateRightTrigger />
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button Text="Rotate" WidthRequest="100">
+                    <Button.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <trigger:BtnRotateTrigger />
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button Text="Scale" WidthRequest="100">
+                    <Button.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <trigger:BtnScaleBiggerTrigger />
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
         </StackLayout>
         <Button
             Clicked="Button_Clicked"
@@ -36,8 +79,18 @@
             HorizontalOptions="Center"
             Text="Explora la belleza del mundo"
             TranslationY="-50"
-            VerticalOptions="End" />
+            VerticalOptions="End">
+            <Button.Triggers>
+                <EventTrigger Event="Clicked">
+                    <trigger:BtnRotateTrigger />
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+
 
     </Grid>
+
+
+
 
 </ContentPage>

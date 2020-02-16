@@ -7,6 +7,7 @@ namespace ExploreTrips.Models
 {
     public class BookingDestination
     {
+        public int Id_DestinationPlace { get; set; }
         public DateTime ArrivalDate { get; set; }
         public DateTime DepartureDate { get; set; }
         public int CantAdults { get; set; } 

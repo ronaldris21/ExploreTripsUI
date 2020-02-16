@@ -12,15 +12,21 @@ namespace ExploreTrips.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BookingPage : ContentPage
     {
+
+
         public BookingPage(Models.DestinationPlace place)
         {
             InitializeComponent();
             BindingContext = new ViewModels.BookingPlaceViewModel(place);
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
             
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+
+
     }
 }

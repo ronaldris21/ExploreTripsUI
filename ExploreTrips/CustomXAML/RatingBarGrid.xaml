@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Margin="0"
     Padding="0"
+    BackgroundColor="Transparent"
     BindingContextChanged="Grid_BindingContextChanged"
     mc:Ignorable="d">
 
