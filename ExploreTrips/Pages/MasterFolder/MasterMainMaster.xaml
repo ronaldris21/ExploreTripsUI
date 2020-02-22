@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExploreTrips.Pages.MasterFolder.MasterMainMaster"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="Master"
+    BackgroundColor="Transparent"
+    mc:Ignorable="d">
+    <ListView
+        x:Name="MenuItemsListView"
+        HasUnevenRows="true"
+        ItemsSource="{Binding MenuItems}"
+        SelectionMode="Single"
+        SeparatorVisibility="Default">
+        <d:ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Page 1</x:String>
+                <x:String>Page 2</x:String>
+                <x:String>Page 3</x:String>
+                <x:String>Page 4</x:String>
+                <x:String>Page 5</x:String>
+            </x:Array>
+        </d:ListView.ItemsSource>
+        <ListView.Header>
+            <ffimage:CachedImage
+                Aspect="AspectFill"
+                HeightRequest="300"
+                HorizontalOptions="Fill"
+                Source="Explore.jpg" />
+
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <pancake:PancakeView Padding="15,10" HorizontalOptions="FillAndExpand">
+                        <pancake:PancakeView.BackgroundGradientStops>
+                            <pancake:GradientStop Offset="0" Color="Black" />
+                            <pancake:GradientStop Offset="1" Color="{StaticResource CCBlue}" />
+                        </pancake:PancakeView.BackgroundGradientStops>
+                        <Label
+                            d:Text="{Binding .}"
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Title}"
+                            TextColor="White"
+                            VerticalOptions="End"
+                            VerticalTextAlignment="Center" />
+                    </pancake:PancakeView>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

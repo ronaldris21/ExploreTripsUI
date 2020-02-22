@@ -13,6 +13,7 @@ namespace ExploreTrips.Models
         public int CantAdults { get; set; } 
         public int CantChildren { get; set; }
         public int CantDays { set; get; } //Observable!
+        public int RatingBookingExperience { get; set; } =5;
         public Decimal BasePrice { get; set; }
         public Decimal FinalPrice { get; set; } //Observable
 

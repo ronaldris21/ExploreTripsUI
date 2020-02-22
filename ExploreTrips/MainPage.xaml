@@ -21,9 +21,8 @@
             Aspect="AspectFill"
             BitmapOptimizations="True"
             CacheDuration="10"
-            CacheType="All"
             HorizontalOptions="Fill"
-            Source="LandscapePageMedium.jpg"
+            Source="MainPicture.jpg"
             VerticalOptions="Fill" />
 
         <Label
@@ -35,20 +34,18 @@
         <StackLayout Margin="20">
             <CustomXaml:RatingBarGrid HeightRequest="40" HorizontalOptions="End">
                 <CustomXaml:RatingBarGrid.BindingContext>
-                    <x:Double>5</x:Double>
+                    <x:Int32>5</x:Int32>
                 </CustomXaml:RatingBarGrid.BindingContext>
             </CustomXaml:RatingBarGrid>
 
+
             <StackLayout HorizontalOptions="Start">
 
-                <Button Text="Left" WidthRequest="100">
-                    <Button.Triggers>
-                        <EventTrigger Event="Clicked">
-                            <trigger:BtnTranslateLeftTrigger />
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Text="Right" WidthRequest="100">
+
+                <Button
+                    Clicked="Button_Clicked_Explorar"
+                    Text="Explorar"
+                    WidthRequest="100">
                     <Button.Triggers>
                         <EventTrigger Event="Clicked">
                             <trigger:BtnTranslateRightTrigger />
@@ -56,7 +53,10 @@
                     </Button.Triggers>
                 </Button>
 
-                <Button Text="Rotate" WidthRequest="100">
+                <Button
+                    Clicked="Button_Clicked_Reservados"
+                    Text="Reservados"
+                    WidthRequest="100">
                     <Button.Triggers>
                         <EventTrigger Event="Clicked">
                             <trigger:BtnRotateTrigger />
@@ -64,7 +64,10 @@
                     </Button.Triggers>
                 </Button>
 
-                <Button Text="Scale" WidthRequest="100">
+                <Button
+                    Clicked="Button_Clicked_Guardados"
+                    Text="Guardados"
+                    WidthRequest="100">
                     <Button.Triggers>
                         <EventTrigger Event="Clicked">
                             <trigger:BtnScaleBiggerTrigger />
@@ -73,19 +76,22 @@
                 </Button>
             </StackLayout>
         </StackLayout>
-        <Button
-            Clicked="Button_Clicked"
-            FontAttributes="Italic,Bold"
+        <StackLayout
             HorizontalOptions="Center"
-            Text="Explora la belleza del mundo"
             TranslationY="-50"
             VerticalOptions="End">
-            <Button.Triggers>
-                <EventTrigger Event="Clicked">
-                    <trigger:BtnRotateTrigger />
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
+            <Button
+                Clicked="Button_Clicked"
+                FontAttributes="Italic,Bold"
+                Text="Explora la belleza del mundo">
+                <Button.Triggers>
+                    <EventTrigger Event="Clicked">
+                        <trigger:BtnTranslateRightTrigger />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+
 
 
     </Grid>

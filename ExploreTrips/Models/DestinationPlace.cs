@@ -15,6 +15,8 @@ namespace ExploreTrips.Models
         public decimal Price { get; set; }
         public string Img { get; set; }
 
+        public List<string> ImgList { get; set; }
+
 
 
         private Xamarin.Forms.Command _CommandObjectTapped;
@@ -25,7 +27,8 @@ namespace ExploreTrips.Models
         private async void MoveBookingPage(object obj)
         {
             Plugin.SharedTransitions.SharedTransitionNavigationPage.SetTransitionSelectedGroup(App.Current.MainPage, Id.ToString());
-            await App.Current.MainPage.Navigation.PushAsync(new Pages.BookingPage(this));
+            Infraestructure.Singleton.Instance.SelectedPlace = this;
+            await App.Current.MainPage.Navigation.PushAsync(new Pages.PlaceImagesCardViewPage());
         }
 
 

@@ -10,23 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ExploreTrips.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BookingPage : ContentPage
+    public partial class ReservedPlacesPage : ContentPage
     {
-
-
-        public BookingPage(Models.DestinationPlace place)
+        public ReservedPlacesPage()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.BookingPlaceViewModel(place);
-            
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-
-
     }
 }

@@ -24,6 +24,7 @@ namespace ExploreTrips.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            PanCardView.iOS.CardsViewRenderer.Preserve();
 
 
             LoadApplication(new App());

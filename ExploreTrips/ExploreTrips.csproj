@@ -26,16 +26,25 @@
     <EmbeddedResource Update="CustomXAML\RatingBarGrid.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\BookingPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\BookingProcces\BookingDatesContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\BookingProcces\BookingPeopleContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MasterFolder\MasterMain.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MasterFolder\MasterMainMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\PlacesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\PlacesToBookLater.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ReservedPlacesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -43,6 +52,9 @@
   <ItemGroup>
     <Compile Update="CustomXAML\RatingBarGrid.xaml.cs">
       <DependentUpon>RatingBarGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\PlaceImagesCardViewPage.xaml.cs">
+      <DependentUpon>PlaceImagesCardViewPage</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

@@ -11,14 +11,19 @@
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
     xmlns:trigger="clr-namespace:ExploreTrips.Triggers"
+    xmlns:viewmodels="clr-namespace:ExploreTrips.ViewModels"
+    Title="Explorar"
     sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Flip"
-    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <viewmodels:PlacesPageViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="120" />
+                <RowDefinition Height="100" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -32,10 +37,11 @@
                 CacheDuration="10"
                 CacheType="All"
                 HorizontalOptions="Fill"
-                Source="LandscapePageMedium.jpg"
+                Source="MainPicture.jpg"
                 VerticalOptions="Fill" />
 
             <Label
+                x:Name="lblBestExperience"
                 FontSize="Large"
                 HorizontalOptions="Center"
                 Text="Vive la mejor experiencia de tu vida!"
@@ -59,108 +65,46 @@
                 Grid.Row="1"
                 Grid.RowSpan="3"
                 ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding Lugares}"
                 ItemsUpdatingScrollMode="KeepLastItemInView"
                 SelectionMode="None">
-                <CollectionView.ItemsSource>
+                <d:CollectionView.ItemsSource>
                     <x:Array Type="{x:Type models:DestinationPlace}">
-                        <!--#region Destinations Original-->
+                        <!--#region Destinations-->
                         <models:DestinationPlace
                             Name="Santorini - Grecia"
                             Category="Explore"
                             Id="2"
-                            Img="Santorinih500.jpg"
+                            Img="Santorini00.jpg"
                             Price="25.99"
                             Ranking="5" />
                         <models:DestinationPlace
                             Name="Italia - Venecia"
                             Category="Explore"
                             Id="1"
-                            Img="italiah500.jpg"
+                            Img="Venece00.jpg"
                             Price="12.99"
                             Ranking="4" />
+
 
                         <models:DestinationPlace
                             Name="Playa Beach"
                             Category="Relax and Confort"
                             Id="3"
-                            Img="SeaTravel500.jpg"
+                            Img="Beach00.jpg"
                             Price="15"
                             Ranking="5" />
                         <models:DestinationPlace
                             Name="Torre Eifel"
                             Category="Relax and Confort"
                             Id="4"
-                            Img="Paris500.jpg"
-                            Price="19"
-                            Ranking="4.6" />
-
-                        <!--#endregion-->
-                        <!--#region Destinations Copy-->
-                        <models:DestinationPlace
-                            Name="Santorini - Grecia"
-                            Category="Explore"
-                            Id="2"
-                            Img="Santorinih500.jpg"
-                            Price="25.99"
-                            Ranking="5" />
-                        <models:DestinationPlace
-                            Name="Italia - Venecia"
-                            Category="Explore"
-                            Id="1"
-                            Img="italiah500.jpg"
-                            Price="12.99"
-                            Ranking="4" />
-
-                        <models:DestinationPlace
-                            Name="Playa Beach"
-                            Category="Relax and Confort"
-                            Id="3"
-                            Img="SeaTravel500.jpg"
-                            Price="15"
-                            Ranking="5" />
-                        <models:DestinationPlace
-                            Name="Torre Eifel"
-                            Category="Relax and Confort"
-                            Id="4"
-                            Img="Paris500.jpg"
-                            Price="19"
-                            Ranking="4.6" />
-
-                        <!--#endregion-->
-                        <!--#region Destinations Copy-->
-                        <models:DestinationPlace
-                            Name="Santorini - Grecia"
-                            Category="Explore"
-                            Id="2"
-                            Img="Santorinih500.jpg"
-                            Price="25.99"
-                            Ranking="5" />
-                        <models:DestinationPlace
-                            Name="Italia - Venecia"
-                            Category="Explore"
-                            Id="1"
-                            Img="italiah500.jpg"
-                            Price="12.99"
-                            Ranking="4" />
-
-                        <models:DestinationPlace
-                            Name="Playa Beach"
-                            Category="Relax and Confort"
-                            Id="3"
-                            Img="SeaTravel500.jpg"
-                            Price="15"
-                            Ranking="5" />
-                        <models:DestinationPlace
-                            Name="Torre Eifel"
-                            Category="Relax and Confort"
-                            Id="4"
-                            Img="Paris500.jpg"
+                            Img="Paris00.jpg"
                             Price="19"
                             Ranking="4.6" />
 
                         <!--#endregion-->
                     </x:Array>
-                </CollectionView.ItemsSource>
+                </d:CollectionView.ItemsSource>
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout HorizontalItemSpacing="15" Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
@@ -179,6 +123,8 @@
                                     sharedTransitions:Transition.Group="{Binding Id}"
                                     sharedTransitions:Transition.Name="DestinationPlaceIMG"
                                     Aspect="AspectFill"
+                                    CacheDuration="10"
+                                    CacheType="Memory"
                                     FadeAnimationDuration="500"
                                     FadeAnimationEnabled="True"
                                     FadeAnimationForCachedImages="True"

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExploreTrips.Pages.PlaceImagesCardViewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:BookingProccess="clr-namespace:ExploreTrips.Pages.BookingProcces"
+    xmlns:CustomXAML="clr-namespace:ExploreTrips.CustomXAML"
+    xmlns:ViewModels="clr-namespace:ExploreTrips.ViewModels"
+    xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:cardsControls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+    Title="{Binding SelectedPlace.Name}"
+    BindingContext="{Binding Instance, Source={StaticResource Locator}, Mode=TwoWay}"
+    mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Quiero ir!" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <cards:CarouselView
+            Grid.RowSpan="3"
+            Margin="0"
+            Padding="0"
+            ItemsSource="{Binding SelectedPlace.ImgList}"
+            SlideShowDuration="3000"
+            VerticalOptions="Fill">
+
+            <!--<x:Arguments>
+                <proc:BaseCarouselFrontViewProcessor
+                    OpacityFactor="0"
+                    RotationFactor="0.1"
+                    ScaleFactor="0.5" />
+                <proc:BaseCarouselBackViewProcessor
+                    OpacityFactor="0"
+                    RotationFactor="0.1"
+                    ScaleFactor="0.5" />
+            </x:Arguments>-->
+
+            <cards:CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+                        <ffimage:CachedImage
+                            Aspect="AspectFill"
+                            BitmapOptimizations="True"
+                            CacheDuration="10"
+                            CacheType="Memory"
+                            HorizontalOptions="Fill"
+                            RetryCount="3"
+                            RetryDelay="50"
+                            Source="{Binding .}"
+                            VerticalOptions="Fill">
+                            <ffimage:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </ffimage:CachedImage.GestureRecognizers>
+                        </ffimage:CachedImage>
+                    </ContentView>
+                </DataTemplate>
+            </cards:CarouselView.ItemTemplate>
+
+
+            <cardsControls:IndicatorsControl ToFadeDuration="2500" VerticalOptions="Start" />
+            <cardsControls:LeftArrowControl ToFadeDuration="2500" />
+            <cardsControls:RightArrowControl ToFadeDuration="2500" />
+        </cards:CarouselView>
+
+
+        <pancake:PancakeView
+            Grid.Row="1"
+            BackgroundColor="White"
+            CornerRadius="75,0,0,75"
+            HorizontalOptions="Fill"
+            Opacity="0.5"
+            VerticalOptions="Fill">
+            <!--<pancake:PancakeView.BackgroundGradientStops>
+                <pancake:GradientStop Offset="0.0" Color="White" />
+                <pancake:GradientStop Offset="0.5" Color="White" />
+                <pancake:GradientStop Offset="0.7" Color="Transparent" />
+                <pancake:GradientStop Offset="0.9" Color="White" />
+                <pancake:GradientStop Offset="1" Color="White" />
+            </pancake:PancakeView.BackgroundGradientStops>-->
+        </pancake:PancakeView>
+
+
+        <StackLayout
+            Grid.Row="1"
+            Margin="25"
+            BackgroundColor="Transparent">
+            <Button
+                Clicked="Button_Clicked"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HeightRequest="60"
+                HorizontalOptions="Fill"
+                Text="MÁS  INFORMACIÓN"
+                VerticalOptions="CenterAndExpand">
+                <Button.Effects>
+                    <sharedTransitions:TransitionEffect />
+                </Button.Effects>
+            </Button>
+            <CustomXAML:RatingBarGrid
+                BindingContext="{Binding SelectedPlace.Ranking}"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                IsEnabled="False" />
+        </StackLayout>
+
+    </Grid>
+
+
+</ContentPage>

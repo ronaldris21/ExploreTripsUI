@@ -148,27 +148,78 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Paris500.jpg" />
+    <BundleResource Include="Resources\Paris01.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\PlanningTravel.jpg" />
+    <BundleResource Include="Resources\Paris00.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Santorinih500.jpg" />
+    <BundleResource Include="Resources\MainPicture.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\SeaTravel500.jpg" />
+    <BundleResource Include="Resources\lanscap_splash.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\italiah500.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LandscapePageMedium.jpg" />
+    <BundleResource Include="Resources\Explore.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\estrellaFull.svg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\estrellaEmpty.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beach04.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beach03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beach02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beach01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beach00.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece04.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Venece00.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Santorini04.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Santorini03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Santorini02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Santorini01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Santorini00.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Paris03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Paris02.jpg" />
   </ItemGroup>
 </Project>
