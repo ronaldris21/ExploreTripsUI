@@ -34,8 +34,7 @@
                 sharedTransitions:Transition.Name="MainImage"
                 Aspect="AspectFill"
                 BitmapOptimizations="True"
-                CacheDuration="10"
-                CacheType="All"
+                ErrorPlaceholder="reloadIcon.png"
                 HorizontalOptions="Fill"
                 Source="MainPicture.jpg"
                 VerticalOptions="Fill" />
@@ -123,8 +122,7 @@
                                     sharedTransitions:Transition.Group="{Binding Id}"
                                     sharedTransitions:Transition.Name="DestinationPlaceIMG"
                                     Aspect="AspectFill"
-                                    CacheDuration="10"
-                                    CacheType="Memory"
+                                    ErrorPlaceholder="reloadIcon.png"
                                     FadeAnimationDuration="500"
                                     FadeAnimationEnabled="True"
                                     FadeAnimationForCachedImages="True"
@@ -132,7 +130,8 @@
                                     Source="{Binding Img}"
                                     WidthRequest="200">
                                     <ffimage:CachedImage.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding CommandObjectTapped}" />
+                                        <TapGestureRecognizer Command="{Binding CommandObjectTapped}" NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped" />
                                     </ffimage:CachedImage.GestureRecognizers>
                                 </ffimage:CachedImage>
                                 <StackLayout

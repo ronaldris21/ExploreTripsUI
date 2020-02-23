@@ -21,13 +21,13 @@ namespace ExploreTrips
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Task.Delay(350);
+            await Task.Delay(500);
             await App.Current.MainPage.Navigation.PushAsync(new Pages.MasterFolder.MasterMain());
         }
 
         private async void Button_Clicked_Explorar(object sender, EventArgs e)
         {
-            await Task.Delay(350);
+            await Task.Delay(500);
             await App.Current.MainPage.Navigation.PushAsync(new Pages.MasterFolder.MasterMain());
 
         }
@@ -35,7 +35,7 @@ namespace ExploreTrips
         {
             var pageto = new Pages.MasterFolder.MasterMain();
             pageto.ActivateDetailPage(Pages.MasterFolder.MenuItem.ReservedPlaces);
-            await Task.Delay(350);
+            await Task.Delay(500);
             await App.Current.MainPage.Navigation.PushAsync(pageto);
         }
 
@@ -43,7 +43,7 @@ namespace ExploreTrips
         {
             var pageto = new Pages.MasterFolder.MasterMain();
             pageto.ActivateDetailPage(Pages.MasterFolder.MenuItem.PlacesToBookLater);
-            await Task.Delay(350);
+            await Task.Delay(500);
             await App.Current.MainPage.Navigation.PushAsync(pageto);
         }
     }

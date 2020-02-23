@@ -20,7 +20,6 @@
             sharedTransitions:Transition.Name="MainImage"
             Aspect="AspectFill"
             BitmapOptimizations="True"
-            CacheDuration="10"
             HorizontalOptions="Fill"
             Source="MainPicture.jpg"
             VerticalOptions="Fill" />

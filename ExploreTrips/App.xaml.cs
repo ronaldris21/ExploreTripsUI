@@ -11,7 +11,7 @@ namespace ExploreTrips
         {
             InitializeComponent();
 
-            MainPage = new SharedTransitionNavigationPage(new MainPage()) { BarBackgroundColor = Color.FromHex("009dbe") };
+            MainPage = new SharedTransitionNavigationPage(new MainPage()) { BarBackgroundColor = Color.FromHex("#009dbe") };
         }
 
         protected override void OnStart()

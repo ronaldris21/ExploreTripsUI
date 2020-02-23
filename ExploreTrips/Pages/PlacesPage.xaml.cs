@@ -41,5 +41,15 @@ namespace ExploreTrips.Pages
             //}
 
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
+        {
+            var imageff = sender as FFImageLoading.Forms.CachedImage;
+            if (imageff==null)
+            {
+                return;
+            }
+            imageff.ReloadImage();
+        }
     }
 }
