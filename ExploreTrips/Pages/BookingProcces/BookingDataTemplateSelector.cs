@@ -4,8 +4,8 @@
     public class BookingDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate DatesTemplate { get; set; }
+        public DataTemplate PriceTemplace { get; set; }
         public DataTemplate PeopleAmountTemplate { get; set; }
-        public DataTemplate PriceTemplate { get; set; }
         public DataTemplate DetailsTemplate { get; set; }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
@@ -15,10 +15,10 @@
                     return DatesTemplate;
                 case BookingTemplates.PeopleAmountTemplate:
                     return PeopleAmountTemplate;
-                case BookingTemplates.PriceTemplate:
-                    return PriceTemplate;
                 case BookingTemplates.DetailsTemplate:
                     return DetailsTemplate;
+                case BookingTemplates.PriceTemplate:
+                    return PriceTemplace;
                 default:
                     return DatesTemplate;
             }
@@ -29,8 +29,8 @@
     {
         DatesTemplate,
         PeopleAmountTemplate,
-        PriceTemplate,
-        DetailsTemplate
+        DetailsTemplate,
+        PriceTemplate
     }
 
     public class BookingClassObject

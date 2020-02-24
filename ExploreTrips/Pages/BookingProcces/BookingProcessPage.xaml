@@ -12,24 +12,14 @@
     xmlns:infra="clr-namespace:ExploreTrips.Infraestructure"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="{Binding SelectedPlace.Name}"
     BackgroundColor="White"
     BindingContext="{Binding Instance, Source={StaticResource Locator}, Mode=TwoWay}"
     mc:Ignorable="d">
-    <NavigationPage.TitleView>
-        <!--<XFMaterial:MaterialChip
-            ActionImageTintColor="Aqua"
-            BackgroundColor="White"
-            FlowDirection="RightToLeft"
-            FontSize="20"
-            Text="{Binding SelectedPlace.Name}"
-            TextColor="Black" />-->
-        <CustomXAML:RatingBarGrid
-            BindingContext="{Binding SelectedPlace.Ranking}"
-            HeightRequest="40"
-            HorizontalOptions="Center"
-            IsEnabled="False" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding BookingBeingMade.FinalPrice, StringFormat='Total {0:C2}'}" />
 
-    </NavigationPage.TitleView>
+    </ContentPage.ToolbarItems>
 
 
     <ContentPage.Resources>
@@ -38,14 +28,30 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource CCBlue}" />
             </Style>-->
         </ResourceDictionary>
+
+
+
         <!--#region Price Template-->
-        <DataTemplate x:Key="PriceTemplate">
-            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
-                <XFMaterial:MaterialChip Text="Price" />
-                <!--  Muestra los precios Adultos normal y Niños 80%  -->
+        <DataTemplate x:Key="TemplatePrice">
+            <StackLayout
+                Margin="5"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0"
+                VerticalOptions="Fill">
 
+                <XFMaterial:MaterialLabel
+                    Padding="10"
+                    HorizontalOptions="Fill"
+                    Text="Todas nuestras promociones incluyen asesoría migratoria, desayuno y cena y un guía turístico para el primer día de hospedaje."
+                    VerticalOptions="CenterAndExpand" />
+                <XFMaterial:MaterialChip
+                    Margin="0"
+                    BackgroundColor="{StaticResource CCBlueDark}"
+                    HorizontalOptions="Center"
+                    Text="{Binding BookingBeingMade.BasePrice, StringFormat='Precio:  {0:C2} / 24 Horas  *  Persona '}"
+                    TextColor="White" />
 
-
+                <XFMaterial:MaterialLabel HorizontalOptions="Center" Text="Niños solo pagan un 80% del precio" />
 
                 <XFMaterial:MaterialButton
                     Margin="5"
@@ -58,14 +64,65 @@
         </DataTemplate>
         <!--#endregion-->
 
+        <!--#region People Template-->
+        <DataTemplate x:Key="TemplatePeople">
+            <StackLayout
+                Margin="5"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0"
+                VerticalOptions="Fill">
+
+                <XFMaterial:MaterialLabel
+                    Padding="10"
+                    HorizontalOptions="Fill"
+                    Text="Todas nuestras promociones incluyen asesoría migratoria, desayuno y cena y un guía turístico para el primer día de hospedaje."
+                    VerticalOptions="CenterAndExpand" />
+                <XFMaterial:MaterialChip
+                    Margin="0"
+                    BackgroundColor="{StaticResource CCBlueDark}"
+                    HorizontalOptions="Center"
+                    Text="{Binding BookingBeingMade.BasePrice, StringFormat='Precio: {0:C2}/24 Horas * Persona '}"
+                    TextColor="White" />
+
+                <XFMaterial:MaterialLabel HorizontalOptions="Center" Text="Niños solo pagan un 80% del precio" />
+
+                <Grid RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+
+                </Grid>
+                <StackLayout
+                    Margin="5,0,5,5"
+                    Orientation="Horizontal"
+                    VerticalOptions="EndAndExpand">
+                    <XFMaterial:MaterialButton
+                        Command="{Binding PreviousStepCommand}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Anterior" />
+                    <XFMaterial:MaterialButton
+                        Command="{Binding NextStepCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Siguiente" />
+                </StackLayout>
+            </StackLayout>
+
+        </DataTemplate>
+        <!--#endregion-->
+
+
 
         <!--#region Fechas Template-->
         <DataTemplate x:Key="TemplateFechas">
             <StackLayout
+                Margin="5"
                 HorizontalOptions="Fill"
                 Spacing="0"
                 VerticalOptions="Fill">
-                <XFMaterial:MaterialChip Text="Fecha" />
                 <XFMaterial:MaterialDateField
                     Date="{Binding BookingBeingMade.ArrivalDate}"
                     Placeholder="Fecha de inicio"
@@ -74,7 +131,18 @@
                     Date="{Binding BookingBeingMade.DepartureDate}"
                     Placeholder="Fecha de Salida"
                     TextColor="Black" />
+                <StackLayout Margin="5" Orientation="Horizontal">
+                    <Label
+                        FontSize="Medium"
+                        Text="{Binding BookingBeingMade.CantDays, StringFormat='{0} días'}"
+                        TextColor="Black" />
 
+                    <Label
+                        FontSize="Medium"
+                        HorizontalOptions="EndAndExpand"
+                        Text="{Binding BookingBeingMade.FinalPrice, StringFormat='Total {0:C2}'}"
+                        TextColor="Black" />
+                </StackLayout>
                 <StackLayout
                     Margin="5,0,5,5"
                     Orientation="Horizontal"
@@ -94,35 +162,17 @@
         <!--#endregion-->
 
 
-        <!--#region People Template-->
-        <DataTemplate x:Key="TemplatePeople">
-            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
-                <XFMaterial:MaterialChip Text="People" />
-
-                <StackLayout
-                    Margin="5"
-                    Orientation="Horizontal"
-                    VerticalOptions="EndAndExpand">
-                    <XFMaterial:MaterialButton
-                        Command="{Binding PreviousStepCommand}"
-                        HorizontalOptions="StartAndExpand"
-                        Text="Anterior" />
-                    <XFMaterial:MaterialButton
-                        Command="{Binding NextStepCommand}"
-                        HorizontalOptions="EndAndExpand"
-                        Text="Siguiente" />
-                </StackLayout>
-            </StackLayout>
-
-        </DataTemplate>
-        <!--#endregion-->
-
-
 
         <!--#region Deatails Template-->
         <DataTemplate x:Key="DetailsTemplate">
-            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+            <StackLayout
+                Margin="5"
+                HorizontalOptions="Fill"
+                Spacing="0"
+                VerticalOptions="Fill">
+
                 <XFMaterial:MaterialChip Text="Details" TextColor="Black" />
+                <Label Text="{Binding BookingBeingMade.ArrivalDate, StringFormat='{0:dd-MM-yyyy}'}" />
 
                 <XFMaterial:MaterialButton
                     Margin="5"
@@ -140,7 +190,7 @@
             DatesTemplate="{StaticResource TemplateFechas}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             PeopleAmountTemplate="{StaticResource TemplatePeople}"
-            PriceTemplate="{StaticResource PriceTemplate}" />
+            PriceTemplace="{StaticResource TemplatePrice}" />
     </ContentPage.Resources>
 
 
@@ -165,36 +215,6 @@
                     Source="{Binding SelectedPlace.Img}"
                     VerticalOptions="Fill" />
                 <pancake:PancakeView
-                    Margin="5"
-                    Padding="5"
-                    BackgroundColor="{StaticResource CCBlue}"
-                    CornerRadius="30,0,0,30"
-                    HeightRequest="60"
-                    HorizontalOptions="Center"
-                    Opacity="0.8">
-                    <Label
-                        FontAttributes="Italic"
-                        FontSize="30"
-                        HorizontalOptions="Center"
-                        Text="{Binding SelectedPlace.Name}"
-                        TextColor="Transparent"
-                        VerticalOptions="Center" />
-                </pancake:PancakeView>
-                <StackLayout
-                    Margin="5"
-                    Padding="5"
-                    HeightRequest="60"
-                    HorizontalOptions="Center">
-                    <Label
-                        FontAttributes="Italic"
-                        FontSize="30"
-                        HorizontalOptions="Center"
-                        Text="{Binding SelectedPlace.Name}"
-                        TextColor="White"
-                        VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-
-                <pancake:PancakeView
                     Grid.Row="1"
                     Margin="10"
                     BackgroundColor="White"
@@ -202,10 +222,11 @@
                     HorizontalOptions="Fill"
                     Opacity="0.7"
                     VerticalOptions="Fill">
-                    <ScrollView Margin="25">
+                    <ScrollView Margin="25" VerticalOptions="Center">
                         <XFMaterial:MaterialLabel
                             FontAttributes="Bold"
                             FontSize="Medium"
+                            HorizontalOptions="Center"
                             Text="{Binding SelectedPlace.Description}"
                             TextColor="Black" />
                     </ScrollView>
@@ -251,6 +272,10 @@
                     TabIndex="3"
                     Text="{Binding BookingBeingMade.CantChildren}" />
             </StackLayout>-->
+
+
+
+
 
 
             <Grid

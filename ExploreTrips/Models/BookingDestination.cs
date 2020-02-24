@@ -14,9 +14,14 @@ namespace ExploreTrips.Models
             get { return _ArrivalDate; }
             set
             {
+                if (value == ArrivalDate)
+                {
+                    return;
+                }
                 ValidArrivalDate = value.Date >= DateTime.Today ? true : false;
                 if (ValidArrivalDate)
                 {
+                    
                     ValidArrivalDate = (DepartureDate - value).Days >= 0;
                     if (ValidArrivalDate)
                     {
@@ -25,13 +30,14 @@ namespace ExploreTrips.Models
                     }
                     else
                     {
+                        OnPropertyChanged(nameof(ArrivalDate));  // PARA EVITAR QUE PONGA LA FECHA DEL MAPA SELECCIONADA
                         Plugin.Toast.CrossToastPopUp.Current.ShowToastError("La fecha de ingreso debe ser antes que la de sálida", Plugin.Toast.Abstractions.ToastLength.Long);
                     }
                 }
                 else
                 {
                     Plugin.Toast.CrossToastPopUp.Current.ShowToastError("No se aceptan fechas antes de hoy");
-                    SetProperty(ref _ArrivalDate, DateTime.Now);
+                    OnPropertyChanged(nameof(ArrivalDate));
                 }
             }
         }
@@ -41,6 +47,10 @@ namespace ExploreTrips.Models
             get { return _DepartureDate; }
             set
             {
+                if (value==DepartureDate)
+                {
+                    return;
+                }
                 ValidDepartureDate = value.Date >= DateTime.Today ? true : false;
                 if (ValidDepartureDate)
                 {
@@ -53,12 +63,13 @@ namespace ExploreTrips.Models
                     else
                     {
                         Plugin.Toast.CrossToastPopUp.Current.ShowToastError("La fecha de salida debe ser posterior a la de ingreso",Plugin.Toast.Abstractions.ToastLength.Long);
+                        OnPropertyChanged(nameof(DepartureDate));  // PARA EVITAR QUE PONGA LA FECHA DEL MAPA SELECCIONADA
                     }
                 }
                 else
                 {
                     Plugin.Toast.CrossToastPopUp.Current.ShowToastError("No se aceptan fechas antes de hoy");
-                    SetProperty(ref _DepartureDate, DateTime.Now);
+                    OnPropertyChanged(nameof(DepartureDate));
                 }
             }
         }
@@ -111,15 +122,17 @@ namespace ExploreTrips.Models
         {
             if (DepartureDate>=DateTime.Today && ArrivalDate>=DateTime.Today)
             {
-                if ((DepartureDate - ArrivalDate).Days > 0)
+                int days = (DepartureDate - ArrivalDate).Days + 1;
+                if ( days> 0)
                 {
-                    CantDays = (DepartureDate - ArrivalDate).Days;
-                    Plugin.Toast.CrossToastPopUp.Current.ShowToastMessage("Reservar " + CantDays.ToString() + " días ");
+                    CantDays = days;
+                    OnPropertyChanged(nameof(CantDays));
+                    //Plugin.Toast.CrossToastPopUp.Current.ShowToastMessage("Reservar " + CantDays.ToString() + " días ");
                 }
-
-                if (CantAdults==0)
+                else
                 {
-                    CantAdults = 1;
+                    CantDays = 1;
+                    OnPropertyChanged(nameof(CantDays));
                 }
                 UpdatePrice();
             }
@@ -128,6 +141,7 @@ namespace ExploreTrips.Models
         private void UpdatePrice()
         {
             FinalPrice = BasePrice * (CantAdults + CantChildren * 0.8) * CantDays;
+            OnPropertyChanged(nameof(FinalPrice));
         }
 
 

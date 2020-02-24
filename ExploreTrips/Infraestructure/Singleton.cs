@@ -14,11 +14,22 @@ namespace ExploreTrips.Infraestructure
             if (instance == null)
             {
                 instance = this;
+                Sqlite = new DataStorage.SQLiteHandler();
+                Sqlite.InitTablesAsync();
                 LoadMenu();
             }
         }
         private static Singleton instance;
         public static Singleton Instance => instance ?? (instance = new Singleton());
+        #endregion
+
+        #region Utils
+        public DataStorage.SQLiteHandler Sqlite { get; set; }
+        #endregion
+
+
+        #region Reservados
+        public ObservableCollection<Models.BookingDestination> ViajesReservados { get; set; }
         #endregion
 
 
@@ -34,7 +45,9 @@ namespace ExploreTrips.Infraestructure
                     BasePrice = value.Price, 
                     Id_DestinationPlace = value.Id, 
                     DepartureDate=DateTime.Now,
-                    ArrivalDate=DateTime.Now
+                    ArrivalDate=DateTime.Now,
+                    CantDays=1,
+                    CantAdults=1
                 }; //Actualizo la reservación que haré
                 BookingStep = 0;
             }

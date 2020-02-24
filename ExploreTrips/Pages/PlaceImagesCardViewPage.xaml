@@ -61,7 +61,7 @@
                         <ffimage:CachedImage
                             Aspect="AspectFill"
                             BitmapOptimizations="True"
-                            ErrorPlaceholder="reloadIcon.png"   
+                            ErrorPlaceholder="reloadIcon.png"
                             HorizontalOptions="Fill"
                             RetryCount="5"
                             RetryDelay="100"
@@ -109,12 +109,8 @@
                 FontSize="Large"
                 HeightRequest="60"
                 HorizontalOptions="Fill"
-                Text="MÁS  INFORMACIÓN"
-                VerticalOptions="CenterAndExpand">
-                <Button.Effects>
-                    <sharedTransitions:TransitionEffect />
-                </Button.Effects>
-            </Button>
+                Text="Quiero Ir"
+                VerticalOptions="CenterAndExpand" />
             <CustomXAML:RatingBarGrid
                 BindingContext="{Binding SelectedPlace.Ranking}"
                 HeightRequest="40"
