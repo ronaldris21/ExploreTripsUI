@@ -12,7 +12,7 @@
     xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
     xmlns:trigger="clr-namespace:ExploreTrips.Triggers"
     xmlns:viewmodels="clr-namespace:ExploreTrips.ViewModels"
-    Title="Explorar"
+    Title="Explore Trips"
     sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Flip"
     mc:Ignorable="d">
     <ContentPage.BindingContext>

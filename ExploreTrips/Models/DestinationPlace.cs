@@ -12,8 +12,9 @@ namespace ExploreTrips.Models
 
         public string Name { get; set; }
         public double Ranking { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public string Img { get; set; }
+        public string Description { get; set; }
 
         public List<string> ImgList { get; set; }
 

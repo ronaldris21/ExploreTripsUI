@@ -12,18 +12,15 @@ namespace ExploreTrips.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceImagesCardViewPage : ContentPage
     {
-
-
         public PlaceImagesCardViewPage()
         {
             InitializeComponent();
             //BindingContext = new ViewModels.BookingPlaceViewModel(place);
-            
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async  void Button_Clicked(object sender, EventArgs e)
         {
-
+            await App.Current.MainPage.Navigation.PushAsync(new Pages.BookingProcces.BookingProcessPage());
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

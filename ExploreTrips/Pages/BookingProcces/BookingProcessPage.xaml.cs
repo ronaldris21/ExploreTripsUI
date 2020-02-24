@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace ExploreTrips.Pages.BookingProcces
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BookingPeopleContentView : ContentView
+    public partial class BookingProcessPage : ContentPage
     {
-        public BookingPeopleContentView()
+        public BookingProcessPage()
         {
             InitializeComponent();
         }
+
     }
 }

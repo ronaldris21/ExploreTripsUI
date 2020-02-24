@@ -18,7 +18,10 @@
     BindingContext="{Binding Instance, Source={StaticResource Locator}, Mode=TwoWay}"
     mc:Ignorable="d">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Quiero ir!" />
+        <ToolbarItem
+            Clicked="Button_Clicked"
+            Order="Primary"
+            Text="Quiero ir!" />
     </ContentPage.ToolbarItems>
 
     <Grid RowSpacing="0">
@@ -32,8 +35,9 @@
             Grid.RowSpan="3"
             Margin="0"
             Padding="0"
+            IsCyclical="True"
             ItemsSource="{Binding SelectedPlace.ImgList}"
-            SlideShowDuration="4000"
+            SlideShowDuration="3500"
             VerticalOptions="Fill">
 
             <!--<x:Arguments>
@@ -57,8 +61,10 @@
                         <ffimage:CachedImage
                             Aspect="AspectFill"
                             BitmapOptimizations="True"
-                            ErrorPlaceholder="reloadIcon.png"
+                            ErrorPlaceholder="reloadIcon.png"   
                             HorizontalOptions="Fill"
+                            RetryCount="5"
+                            RetryDelay="100"
                             Source="{Binding .}"
                             VerticalOptions="Fill">
                             <ffimage:CachedImage.GestureRecognizers>

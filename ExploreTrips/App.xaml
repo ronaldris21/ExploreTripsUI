@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <infra:InstanceLocator x:Key="Locator" />
             <Color x:Key="CCBlue">#009dbe</Color>
+            <Color x:Key="CCBlueDark">#0A46CC</Color>
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource CCBlue}" />
                 <Setter Property="TextColor" Value="White" />

@@ -10,6 +10,7 @@ namespace ExploreTrips
         public App()
         {
             InitializeComponent();
+            XF.Material.Forms.Material.Init(this);
 
             MainPage = new SharedTransitionNavigationPage(new MainPage()) { BarBackgroundColor = Color.FromHex("#009dbe") };
         }

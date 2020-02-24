@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExploreTrips.Pages.BookingProcces.BookingProcessPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:BookingProccess="clr-namespace:ExploreTrips.Pages.BookingProcces"
+    xmlns:CustomXAML="clr-namespace:ExploreTrips.CustomXAML"
+    xmlns:PanCards="clr-namespace:PanCardView;assembly=PanCardView"
+    xmlns:StepProgressBar="clr-namespace:Xamarin.Forms.StepProgressBar;assembly=Xamarin.Forms.StepProgressBar"
+    xmlns:XFMaterial="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:infra="clr-namespace:ExploreTrips.Infraestructure"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="White"
+    BindingContext="{Binding Instance, Source={StaticResource Locator}, Mode=TwoWay}"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <!--<XFMaterial:MaterialChip
+            ActionImageTintColor="Aqua"
+            BackgroundColor="White"
+            FlowDirection="RightToLeft"
+            FontSize="20"
+            Text="{Binding SelectedPlace.Name}"
+            TextColor="Black" />-->
+        <CustomXAML:RatingBarGrid
+            BindingContext="{Binding SelectedPlace.Ranking}"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            IsEnabled="False" />
+
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--<Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource CCBlue}" />
+            </Style>-->
+        </ResourceDictionary>
+        <!--#region Price Template-->
+        <DataTemplate x:Key="PriceTemplate">
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+                <XFMaterial:MaterialChip Text="Price" />
+                <!--  Muestra los precios Adultos normal y Niños 80%  -->
+
+
+
+
+                <XFMaterial:MaterialButton
+                    Margin="5"
+                    Command="{Binding NextStepCommand}"
+                    HorizontalOptions="End"
+                    Text="Siguiente"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+
+        </DataTemplate>
+        <!--#endregion-->
+
+
+        <!--#region Fechas Template-->
+        <DataTemplate x:Key="TemplateFechas">
+            <StackLayout
+                HorizontalOptions="Fill"
+                Spacing="0"
+                VerticalOptions="Fill">
+                <XFMaterial:MaterialChip Text="Fecha" />
+                <XFMaterial:MaterialDateField
+                    Date="{Binding BookingBeingMade.ArrivalDate}"
+                    Placeholder="Fecha de inicio"
+                    TextColor="Black" />
+                <XFMaterial:MaterialDateField
+                    Date="{Binding BookingBeingMade.DepartureDate}"
+                    Placeholder="Fecha de Salida"
+                    TextColor="Black" />
+
+                <StackLayout
+                    Margin="5,0,5,5"
+                    Orientation="Horizontal"
+                    VerticalOptions="EndAndExpand">
+                    <XFMaterial:MaterialButton
+                        Command="{Binding PreviousStepCommand}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Anterior" />
+                    <XFMaterial:MaterialButton
+                        Command="{Binding NextStepCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Siguiente" />
+                </StackLayout>
+
+            </StackLayout>
+        </DataTemplate>
+        <!--#endregion-->
+
+
+        <!--#region People Template-->
+        <DataTemplate x:Key="TemplatePeople">
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+                <XFMaterial:MaterialChip Text="People" />
+
+                <StackLayout
+                    Margin="5"
+                    Orientation="Horizontal"
+                    VerticalOptions="EndAndExpand">
+                    <XFMaterial:MaterialButton
+                        Command="{Binding PreviousStepCommand}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Anterior" />
+                    <XFMaterial:MaterialButton
+                        Command="{Binding NextStepCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Siguiente" />
+                </StackLayout>
+            </StackLayout>
+
+        </DataTemplate>
+        <!--#endregion-->
+
+
+
+        <!--#region Deatails Template-->
+        <DataTemplate x:Key="DetailsTemplate">
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+                <XFMaterial:MaterialChip Text="Details" TextColor="Black" />
+
+                <XFMaterial:MaterialButton
+                    Margin="5"
+                    Command="{Binding PreviousStepCommand}"
+                    HorizontalOptions="Start"
+                    Text="Anterior"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+
+        </DataTemplate>
+        <!--#endregion-->
+
+        <BookingProccess:BookingDataTemplateSelector
+            x:Key="BookingTemplateSelector"
+            DatesTemplate="{StaticResource TemplateFechas}"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
+            PeopleAmountTemplate="{StaticResource TemplatePeople}"
+            PriceTemplate="{StaticResource PriceTemplate}" />
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="250" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.RowSpan="2"
+                    Aspect="AspectFill"
+                    HorizontalOptions="Fill"
+                    Source="{Binding SelectedPlace.Img}"
+                    VerticalOptions="Fill" />
+                <pancake:PancakeView
+                    Margin="5"
+                    Padding="5"
+                    BackgroundColor="{StaticResource CCBlue}"
+                    CornerRadius="30,0,0,30"
+                    HeightRequest="60"
+                    HorizontalOptions="Center"
+                    Opacity="0.8">
+                    <Label
+                        FontAttributes="Italic"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="{Binding SelectedPlace.Name}"
+                        TextColor="Transparent"
+                        VerticalOptions="Center" />
+                </pancake:PancakeView>
+                <StackLayout
+                    Margin="5"
+                    Padding="5"
+                    HeightRequest="60"
+                    HorizontalOptions="Center">
+                    <Label
+                        FontAttributes="Italic"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="{Binding SelectedPlace.Name}"
+                        TextColor="White"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+
+                <pancake:PancakeView
+                    Grid.Row="1"
+                    Margin="10"
+                    BackgroundColor="White"
+                    CornerRadius="75,0,0,75"
+                    HorizontalOptions="Fill"
+                    Opacity="0.7"
+                    VerticalOptions="Fill">
+                    <ScrollView Margin="25">
+                        <XFMaterial:MaterialLabel
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{Binding SelectedPlace.Description}"
+                            TextColor="Black" />
+                    </ScrollView>
+                </pancake:PancakeView>
+
+            </Grid>
+
+            <PanCards:CarouselView
+                Grid.Row="1"
+                IsCyclical="False"
+                ItemTemplate="{StaticResource BookingTemplateSelector}"
+                SelectedIndex="{Binding BookingStep}">
+                <PanCards:CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type BookingProccess:BookingClassObject}">
+                        <BookingProccess:BookingClassObject EnumTemplate="PriceTemplate" />
+                        <BookingProccess:BookingClassObject EnumTemplate="PeopleAmountTemplate" />
+                        <BookingProccess:BookingClassObject EnumTemplate="DatesTemplate" />
+                        <BookingProccess:BookingClassObject EnumTemplate="DetailsTemplate" />
+                    </x:Array>
+                </PanCards:CarouselView.ItemsSource>
+            </PanCards:CarouselView>
+
+            <!--<StackLayout >
+
+
+
+
+                <XFMaterial:MaterialTextField
+                    HelperText="Fecha de inicio"
+                    IsMaxLengthCounterVisible="True"
+                    MaxLength="10"
+                    Placeholder="Prueba"
+                    ReturnType="Next"
+                    TabIndex="1"
+                    Text="Llas" />
+
+
+
+                <XFMaterial:MaterialTextField
+                    BackgroundColor="Gray"
+                    HeightRequest="200"
+                    IsSpellCheckEnabled="True"
+                    TabIndex="3"
+                    Text="{Binding BookingBeingMade.CantChildren}" />
+            </StackLayout>-->
+
+
+            <Grid
+                Grid.Row="2"
+                Margin="0"
+                Padding="5"
+                HorizontalOptions="Fill">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <XFMaterial:MaterialButton
+                    AllCaps="False"
+                    BackgroundColor="Green"
+                    CornerRadius="50"
+                    Text="Reservar Luego"
+                    VerticalOptions="Fill" />
+                <XFMaterial:MaterialButton
+                    Grid.Column="1"
+                    AllCaps="False"
+                    BackgroundColor="{StaticResource CCBlueDark}"
+                    CornerRadius="50"
+                    FontSize="Title"
+                    Text="Confirmar" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,6 +7,7 @@ namespace ExploreTrips.Infraestructure
     using ViewModels;
     public class Singleton : MvvmHelpers.ObservableObject
     {
+        #region Singleton 
         public Singleton()
         {
             //Lo igualo porque unicamente ha sido intanciado en APP.XAML
@@ -16,14 +17,12 @@ namespace ExploreTrips.Infraestructure
                 LoadMenu();
             }
         }
-
-
-
         private static Singleton instance;
         public static Singleton Instance => instance ?? (instance = new Singleton());
+        #endregion
 
 
-        #region Atributos y Propiedades
+        #region Booking Procces
         private DestinationPlace _selectedPlace;
         public DestinationPlace SelectedPlace
         {
@@ -31,7 +30,13 @@ namespace ExploreTrips.Infraestructure
             set
             {
                 SetProperty(ref _selectedPlace, value);
-                BookingBeingMade = new BookingDestination() { BasePrice = value.Price, Id_DestinationPlace = value.Id }; //Actualizo la reservación que haré
+                BookingBeingMade = new BookingDestination() { 
+                    BasePrice = value.Price, 
+                    Id_DestinationPlace = value.Id, 
+                    DepartureDate=DateTime.Now,
+                    ArrivalDate=DateTime.Now
+                }; //Actualizo la reservación que haré
+                BookingStep = 0;
             }
         }
 
@@ -44,17 +49,31 @@ namespace ExploreTrips.Infraestructure
                 SetProperty(ref _BookingBeingMade, value);
             }
         }
+        private int _BookingStep = 0;
+        public int BookingStep
+        {
+            get { return _BookingStep; }
+            set { SetProperty(ref _BookingStep, value); }
+        }
 
-
-        public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
-
-
-
+        private Xamarin.Forms.Command _NextStepCommand => new Xamarin.Forms.Command(NextStepMethod);
+        public Xamarin.Forms.Command NextStepCommand { get => _NextStepCommand; }
+        private void NextStepMethod()
+        {
+            BookingStep++;
+        }
+        private Xamarin.Forms.Command _PreviousStepCommand => new Xamarin.Forms.Command(PreviousStepMethod);
+        public Xamarin.Forms.Command PreviousStepCommand { get => _PreviousStepCommand; }
+        private void PreviousStepMethod()
+        {
+            BookingStep--;
+        }
         #endregion
 
 
 
-        #region Metodos
+        #region Master MENU
+        public ObservableCollection<MenuItemViewModel> MenuItems { get; set; }
         private void LoadMenu()
         {
             MenuItems = new ObservableCollection<MenuItemViewModel>();

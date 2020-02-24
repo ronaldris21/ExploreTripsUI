@@ -56,6 +56,9 @@
     <PackageReference Include="CardsView">
       <Version>2.4.4</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Toast">
+      <Version>2.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
@@ -69,6 +72,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Plugin.SharedTransitions">
       <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.5.8</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Venece05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\reloadIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
